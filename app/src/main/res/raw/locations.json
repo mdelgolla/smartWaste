@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3898811340332,
+          7.313433288513169
+        ]
+      },
+      "properties": {"mag":1.5,"place":"No, 62, Polgahawela"}
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.20175099372864,
+          7.224546226178996
+        ]
+      },
+      "properties": {"mag":1.5,"place":"No 1/182, Colombo Road, Warakapola"}
+    }
+  ]
+}
