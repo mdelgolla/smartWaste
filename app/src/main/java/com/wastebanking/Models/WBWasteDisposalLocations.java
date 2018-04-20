@@ -8,35 +8,39 @@ import com.orm.SugarRecord;
 
 public class WBWasteDisposalLocations extends SugarRecord {
     public String type;
-    public int zoneId;
+    public String centerId;
     public Double lat;
     public Double longitude;
+    public String name;
     public String address;
-    public String zoom;
+    public String contact;
 
 
     public WBWasteDisposalLocations(){}
 
-    public WBWasteDisposalLocations(String type,int zoneId,Double lat,Double longitude,String address, String zoom){
+    public WBWasteDisposalLocations(String type,String centerId,Double lat,Double longitude,String name,String address,String contact){
         this.type=type;
-        this.zoneId=zoneId;
+        this.centerId=centerId;
         this.lat=lat;
         this.longitude=longitude;
+        this.name=name;
         this.address=address;
-        this.zoom=zoom;
+        this.contact=contact;
 
     }
     public String getType(){return type;}
-    public int getZoneId(){return zoneId;}
+    public String getCenterId(){return centerId;}
     public Double getLat(){return lat;}
     public Double getLongitude(){return longitude;}
+    public String getName(){return name;}
     public String getAddress(){return address;}
-    private String getZoom(){return zoom;}
+    public String getContact(){return contact;}
 
     public void setType(String type){this.type=type;}
-    public void setZoneId(int zoneId){this.zoneId=zoneId;}
+    public void setCenterId(String centerId){this.centerId=centerId;}
     public void setLat(Double lat){this.lat=lat;}
     public void setLongitude(Double longitude){this.longitude=longitude;}
+    public void setName(String name){this.name=name;}
     public void setAddress(String address){this.address=address;}
-    public void setZoom(String zoom){this.zoom=zoom;}
+    public void setContact(String contact){this.contact=contact;}
 }

@@ -1,0 +1,65 @@
+{
+  "locations":[
+    {
+      "id":"CC001",
+      "type":"collectingCenter",
+      "name":"Neptune Papers (Pvt) Ltd",
+      "contact":"0712100113",
+      "address":"Neptune Papers (Pvt) Ltd, Peliyagoda",
+      "lat":6.959118,
+      "lang":79.888450,
+      "acceptedWaste":["plastic","polythene"]
+    },
+    {
+      "id":"CC002",
+      "type":"collectingCenter",
+      "name":"Ceylon Waste Management (Pvt) Ltd",
+      "contact":"0712100113",
+      "address":"Ceylon Waste Management (Pvt) Ltd. - Factory, Godaparagahalanda Road, 10208",
+      "lat":6.800372,
+      "lang":80.014052,
+      "acceptedWaste":["e-waste"]
+    },
+    {
+      "id":"CC003",
+      "type":"collectingCenter",
+      "name":"Veyangoda Town Waste Recycling Center",
+      "contact":"0771221023",
+      "lat":7.160189,
+      "lang":80.056799,
+      "address":"Veyangoda Town Waste Recycling Center, Economic Center Rd, Veyangoda 11100",
+      "acceptedWaste":["plastic","polythene","organic"]
+    },
+    {
+      "id":"CC004",
+      "type":"collectingCenter",
+      "name":"Green Links Lanka",
+      "contact":"0714066455",
+      "lat":7.008689,
+      "lang":79.897541,
+      "address":"Green Links Lanka,No: 848/3A, Negombo Road,Mabola, Wattala, Sri Lanka",
+      "acceptedWaste":["e-waste"]
+    },
+    {
+      "id":"CC005",
+      "type":"collectingCenter",
+      "name":"Wishwa Enterprises",
+      "contact":"0114336336",
+      "lat":6.959348,
+      "lang":79.967535,
+      "address":"221/3 Mabima, Heiyanthuduwa, Sri Lanka",
+      "acceptedWaste":["e-waste"]
+    },
+    {
+      "id":"CC006",
+      "type":"collectingCenter",
+      "name":"Waste Plastic Collection Center",
+      "contact":"0114336336",
+      "lat":7.087875,
+      "lang":79.904315,
+      "address":"Waste Plastic Collection Center, Ja-Ela",
+      "acceptedWaste":["plastic"]
+    }
+
+  ]
+}

@@ -20,40 +20,42 @@
         android:gravity="bottom"
         android:orientation="vertical">
         <ImageButton
+            android:id="@+id/btn_currentloction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+
             android:src="@drawable/my_current"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffff"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#ffff"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
 
-            <ImageButton
-                android:id="@+id/buttonCurrent"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/current" />
+            <!--<ImageButton-->
+                <!--android:id="@+id/buttonCurrent"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_margin="15dp"-->
+                <!--android:background="@drawable/current" />-->
 
-            <ImageButton
-                android:id="@+id/buttonSave"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/add_wastebin" />
+            <!--<ImageButton-->
+                <!--android:id="@+id/buttonSave"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_margin="15dp"-->
+                <!--android:background="@drawable/add_wastebin" />-->
 
 
-            <ImageButton
-                android:id="@+id/buttonView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/view" />
+            <!--<ImageButton-->
+                <!--android:id="@+id/buttonView"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_margin="15dp"-->
+                <!--android:background="@drawable/view" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
     </LinearLayout>
 </FrameLayout>
