@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="clr_white">#fff</color>
     <color name="clr_gray">#8E9085</color>
+    <color name="text_bg_color">#D3F0D2</color>
+    <color name="layout_bg_color">#A7E0A5</color>
 </resources>

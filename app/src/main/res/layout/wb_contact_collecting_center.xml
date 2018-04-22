@@ -26,19 +26,22 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:layout_margin="@dimen/wb_screen_margins"
                 android:background="#D3F0D2">
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/location"/>
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/location"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/wb_screen_margins"/>
                 <TextView
                     android:id="@+id/tv_address"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="1/147,Alvitigala mawatha, Colombo 07"
+                    android:layout_gravity="center_vertical"
                     android:maxLines="4" />
             </LinearLayout>
             <LinearLayout
@@ -61,8 +64,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/clr_gray"/>
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/phone"
                     android:layout_gravity="center"
                     android:layout_weight="1"/>
@@ -77,20 +80,42 @@
                 android:orientation="horizontal">
 
                 <com.wastebanking.Utility.WBSquareShape
+                    android:id="@+id/layout_organic_waste"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_marginRight="@dimen/wb_screen_margins"
                     android:layout_weight="1"
                     android:background="@drawable/btn_round_corner"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/img_exclamation_mark"
+                        android:id="@+id/img_organic_accpt"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="@dimen/wb_screen_margins"
                         android:layout_marginTop="@dimen/wb_screen_margins"
-                        android:src="@drawable/exclamation_mark" />
+                        android:src="@drawable/img_accept"
+                        android:visibility="visible"/>
+                    <ImageView
+                        android:id="@+id/img_organic_reject"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/wb_screen_margins"
+                        android:layout_marginTop="@dimen/wb_screen_margins"
+                        android:src="@drawable/reject"
+                        android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/tv_organic_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs.5.00/kg"
+                            android:layout_margin="@dimen/wb_screen_margins"
+                            android:visibility="visible"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -116,18 +141,42 @@
                 </com.wastebanking.Utility.WBSquareShape>
 
                 <com.wastebanking.Utility.WBSquareShape
+                    android:id="@+id/layout_glass_waste"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_round_corner"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/wb_screen_margins"
-                        android:layout_marginTop="@dimen/wb_screen_margins"
-                        android:src="@drawable/exclamation_mark" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_glass_accept"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/wb_screen_margins"
+                            android:layout_marginTop="@dimen/wb_screen_margins"
+                            android:src="@drawable/img_accept"
+                            android:visibility="visible"/>
+                        <ImageView
+                            android:id="@+id/img_glass_reject"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/wb_screen_margins"
+                            android:layout_marginTop="@dimen/wb_screen_margins"
+                            android:src="@drawable/reject"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/tv_glass_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs.5.00/kg"
+                            android:layout_margin="@dimen/wb_screen_margins"
+                            android:visibility="visible"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -159,9 +208,11 @@
                 android:layout_marginLeft="@dimen/wb_screen_margins"
                 android:layout_marginRight="@dimen/wb_screen_margins"
                 android:layout_marginTop="@dimen/wb_screen_margins"
+                android:layout_marginBottom="@dimen/wb_screen_margins"
                 android:orientation="horizontal">
 
                 <com.wastebanking.Utility.WBSquareShape
+                    android:id="@+id/layout_plastic_waste"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_marginRight="@dimen/wb_screen_margins"
@@ -169,12 +220,35 @@
                     android:background="@drawable/btn_round_corner"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/wb_screen_margins"
-                        android:layout_marginTop="@dimen/wb_screen_margins"
-                        android:src="@drawable/exclamation_mark" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_plastic_accept"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/wb_screen_margins"
+                            android:layout_marginTop="@dimen/wb_screen_margins"
+                            android:src="@drawable/img_accept"
+                            android:visibility="visible"/>
+                        <ImageView
+                            android:id="@+id/img_plastic_reject"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/wb_screen_margins"
+                            android:layout_marginTop="@dimen/wb_screen_margins"
+                            android:src="@drawable/reject"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/tv_plastic_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs.5.00/kg"
+                            android:layout_margin="@dimen/wb_screen_margins"
+                            android:visibility="visible"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -199,18 +273,42 @@
                 </com.wastebanking.Utility.WBSquareShape>
 
                 <com.wastebanking.Utility.WBSquareShape
+                    android:id="@+id/layout_e_waste"
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_round_corner"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/wb_screen_margins"
-                        android:layout_marginTop="@dimen/wb_screen_margins"
-                        android:src="@drawable/exclamation_mark" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_e_waste_accept"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/wb_screen_margins"
+                            android:layout_marginTop="@dimen/wb_screen_margins"
+                            android:src="@drawable/img_accept"
+                            android:visibility="visible"/>
+                        <ImageView
+                            android:id="@+id/img_e_waste_reject"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="@dimen/wb_screen_margins"
+                            android:layout_marginTop="@dimen/wb_screen_margins"
+                            android:src="@drawable/reject"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/tv_e_waste_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs.5.00/kg"
+                            android:layout_margin="@dimen/wb_screen_margins"
+                            android:visibility="visible"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -234,6 +332,15 @@
                     </LinearLayout>
                 </com.wastebanking.Utility.WBSquareShape>
             </LinearLayout>
+            <Button
+                android:id="@+id/btn_trach_calculator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trash Calculator"
+                android:background="#2B8C2A"
+                android:layout_margin="@dimen/wb_screen_margins"
+                style="@style/buttontext"
+                android:textAllCaps="false"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

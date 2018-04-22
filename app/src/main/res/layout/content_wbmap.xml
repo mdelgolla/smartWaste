@@ -18,44 +18,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:orientation="vertical">
-        <ImageButton
-            android:id="@+id/btn_currentloction"
-            android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/wb_screen_margins">
+        <Button
+            android:id="@+id/btn_contact_collecting_center"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-
-            android:src="@drawable/my_current"/>
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#ffff"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/buttonCurrent"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_margin="15dp"-->
-                <!--android:background="@drawable/current" />-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/buttonSave"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_margin="15dp"-->
-                <!--android:background="@drawable/add_wastebin" />-->
-
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/buttonView"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_margin="15dp"-->
-                <!--android:background="@drawable/view" />-->
-
-        <!--</LinearLayout>-->
+            android:layout_weight="1"
+            android:background="#2B8C2A"
+            android:layout_marginRight="@dimen/wb_screen_margins"
+            android:text="Contact Collecting Center"
+            android:textAllCaps="false"
+            style="@style/buttontext"
+            android:visibility="gone"/>
+        <Button
+            android:id="@+id/btn_contact_truck"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#2B8C2A"
+            android:text="Contact Collecting Truck"
+            android:textAllCaps="false"
+            style="@style/buttontext"
+            android:visibility="gone"/>
     </LinearLayout>
 </FrameLayout>

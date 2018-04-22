@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/layout_bg_color">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/wb_screen_margins">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/calculator" />
+        <RelativeLayout
+            android:layout_marginTop="@dimen/wb_screen_margins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/text_bg_color"
+            android:gravity="center_vertical">
+            <CheckBox
+                android:id="@+id/cb_organic_waste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Organic Waste"
+                style="@style/menu_text_style"/>
+            <EditText
+                android:id="@+id/et_organic_waste"
+                android:layout_alignParentRight="true"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_edit_text"
+                android:hint="Rs.5.00/Kg"
+                android:layout_marginRight="@dimen/wb_screen_margins"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/wb_screen_margins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/text_bg_color"
+            android:gravity="center_vertical">
+            <CheckBox
+                android:id="@+id/cb_glass_waste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Glass Waste"
+                style="@style/menu_text_style"/>
+            <EditText
+                android:id="@+id/et_glass_waste"
+                android:layout_alignParentRight="true"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:hint="Rs 10.00/kg"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginRight="@dimen/wb_screen_margins"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/wb_screen_margins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/text_bg_color"
+            android:gravity="center_vertical">
+            <CheckBox
+                android:id="@+id/cb_plastic_waste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plastic / Polythene"
+                style="@style/menu_text_style"/>
+            <EditText
+                android:id="@+id/et_plastic_waste"
+                android:layout_alignParentRight="true"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:hint="Rs 10.00/Kg"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginRight="@dimen/wb_screen_margins"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/wb_screen_margins"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/text_bg_color"
+            android:gravity="center_vertical">
+            <CheckBox
+                android:id="@+id/cb_e_waste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-Waste"
+                style="@style/menu_text_style"/>
+            <EditText
+                android:id="@+id/et_e_waste"
+                android:layout_alignParentRight="true"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:hint="Rs 10.00/Kg"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginRight="@dimen/wb_screen_margins"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_margin="@dimen/wb_screen_margins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2B8C2A"
+        style="@style/buttontext"
+        android:text="Next"/>
+</LinearLayout>

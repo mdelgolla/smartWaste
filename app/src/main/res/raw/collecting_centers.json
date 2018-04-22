@@ -59,6 +59,26 @@
       "lang":79.904315,
       "address":"Waste Plastic Collection Center, Ja-Ela",
       "acceptedWaste":["plastic"]
+    },
+    {
+      "id":"CT001",
+      "type":"garbageTruck",
+      "name":"Mr. B.T.N Perera",
+      "contact":"0775915079",
+      "lat":6.921346,
+      "lang":79.853069,
+      "address":"Colombo Municipalities Cleaning Center",
+      "acceptedWaste":["plastic","polythene"]
+    },
+    {
+      "id":"CT002",
+      "type":"garbageTruck",
+      "name":"Mr. A.K Kapilraj",
+      "contact":"0775915079",
+      "lat":6.922038,
+      "lang":79.854496,
+      "address":"Colombo Municipalities Cleaning Center",
+      "acceptedWaste":["organic"]
     }
 
   ]

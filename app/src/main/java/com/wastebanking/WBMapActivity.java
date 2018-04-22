@@ -1,6 +1,8 @@
 package com.wastebanking;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -18,8 +20,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -34,15 +37,21 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.PlaceDetectionClient;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.wastebanking.Activities.WBContactCollectinCenter;
+import com.wastebanking.Activities.WBContactTruck;
 import com.wastebanking.Helpers.NavigationHelper;
 import com.wastebanking.Models.WBWasteDisposalLocations;
 
@@ -73,6 +82,7 @@ public class WBMapActivity extends AppCompatActivity
     private NavigationHelper navigationHelper;
     private boolean mLocationPermissionGranted;
     //Buttons
+    private Button btn_contact_collecting_center,btn_contact_truck;
     private ImageButton buttonSave;
     private ImageButton buttonCurrent,btn_currentloction;
     private ImageButton buttonView;
@@ -82,6 +92,9 @@ public class WBMapActivity extends AppCompatActivity
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private View mapView;
     private static final String TAG="getlocation";
+    // The entry points to the Places API.
+    private GeoDataClient mGeoDataClient;
+    private PlaceDetectionClient mPlaceDetectionClient;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private final LatLng mDefaultLocation = new LatLng(6.903810, 79.876590);
     private static final int DEFAULT_ZOOM = 13;
@@ -89,7 +102,10 @@ public class WBMapActivity extends AppCompatActivity
     private Location mLastKnownLocation;
     private LatLng myLocation;
     private LatLng prevLocation;
+    private String typeofCollector="";
+    private boolean collectingCenter=false;
     private Marker myLocationMarker;
+    private Marker currentMarker;
 
     //Google ApiClient
     private GoogleApiClient googleApiClient;
@@ -98,6 +114,8 @@ public class WBMapActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wb_map_activity);
+
+        initViews();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -109,6 +127,14 @@ public class WBMapActivity extends AppCompatActivity
             Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, this, requestCode);
             dialog.show();
         } else {
+            // Construct a GeoDataClient.
+            mGeoDataClient = Places.getGeoDataClient(this, null);
+
+            // Construct a PlaceDetectionClient.
+            mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
+
+            // Construct a FusedLocationProviderClient.
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -118,18 +144,18 @@ public class WBMapActivity extends AppCompatActivity
             myLocation = mDefaultLocation;
         }
 //        Initializing googleapi client
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
+//        googleApiClient = new GoogleApiClient.Builder(this)
+//                .addConnectionCallbacks(this)
+//                .addOnConnectionFailedListener(this)
+//                .addApi(LocationServices.API)
+//                .build();
 
         //Initializing views and adding onclick listeners
 //        buttonSave = (ImageButton) findViewById(R.id.buttonSave);
-        btn_currentloction = (ImageButton) findViewById(R.id.btn_currentloction);
+//        btn_currentloction = (ImageButton) findViewById(R.id.btn_currentloction);
 //        buttonView = (ImageButton) findViewById(R.id.buttonView);
 //        buttonSave.setOnClickListener(this);
-        btn_currentloction.setOnClickListener(this);
+//        btn_currentloction.setOnClickListener(this);
 //        buttonView.setOnClickListener(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -143,18 +169,12 @@ public class WBMapActivity extends AppCompatActivity
 
         markLocationsOnMap();
     }
-
-    @Override
-    protected void onStart() {
-        googleApiClient.connect();
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        googleApiClient.disconnect();
-        super.onStop();
-    }
+public void initViews(){
+    btn_contact_collecting_center=(Button)findViewById(R.id.btn_contact_collecting_center);
+    btn_contact_collecting_center.setOnClickListener(this);
+    btn_contact_truck=(Button)findViewById(R.id.btn_contact_truck);
+    btn_contact_truck.setOnClickListener(this);
+}
 
     public void markLocationsOnMap(){
 //        public ArrayList<MyLocations> loadJSONFromAsset() {
@@ -198,7 +218,20 @@ public class WBMapActivity extends AppCompatActivity
                     wastedisposeLocations.setContact(jo_inside.getString("contact"));
                     wastedisposeLocations.setType(jo_inside.getString("type"));
                     JSONArray jwasteTypes=jo_inside.getJSONArray("acceptedWaste");
+                    ArrayList<String> stringArray = new ArrayList<String>();
+                    for (int j=0; j<jwasteTypes.length();j++){
 
+                        try {
+                            String wasteTypes = jwasteTypes.getString(j);
+                            stringArray.add(wasteTypes);
+                            wastedisposeLocations.setAcceptedWaste(stringArray);
+                            Log.d("disposelocations","1 "+stringArray.toString());
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("disposelocations","1 "+e);
+                        }
+                    }
 
                     //Add your values in your `ArrayList` as below:
                     wasteDisposalLocationsArr.add(wastedisposeLocations);
@@ -210,53 +243,11 @@ public class WBMapActivity extends AppCompatActivity
         addMarkers();
     }
 
-    //Getting current location
-    private void getCurrentLocation() {
-        mMap.clear();
-        //Creating a location object
-        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-
-            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  }, MY_PERMISSION_ACCESS_COURSE_LOCATION );
-        }
-        Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if (location != null) {
-            //Getting longitude and latitude
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-
-            //moving the map to location
-            moveMap();
-        }
-    }
-
-    //Function to move the map
-    private void moveMap() {
-        //String to display current latitude and longitude
-        String msg = latitude + ", " + longitude;
-
-        //Creating a LatLng Object to store Coordinates
-        LatLng latLng = new LatLng(latitude, longitude);
-
-        //Adding marker to map
-        mMap.addMarker(new MarkerOptions()
-                .position(latLng) //setting position
-                .draggable(true) //Making the marker draggable
-                .title("Current Location")); //Adding a title
-
-        //Moving the camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
-        //Animating the camera
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
-        //Displaying current coordinates in toast
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 //        startDemo();
+
         navigationHelper = new NavigationHelper(mMap, getBaseContext());
         // Do other setup activities here too, as described elsewhere in this tutorial. getLocationPermission();
 
@@ -267,20 +258,65 @@ public class WBMapActivity extends AppCompatActivity
         mMap.setOnMarkerDragListener(this);
         mMap.setOnMapLongClickListener(this);
 
+        getLocationPermission();
+        // Turn on the My Location layer and the related control on the map.
+        //updateLocationUI();
+
+        getDeviceLocation();
+
+        //   showCurrentPlace();
+
         settingsrequest();
+        // Get the current location of the device and set the position of the map.
 
 
-//        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//        googleMap.setMapStyle(
+//                MapStyleOptions.loadRawResourceStyle(
+//                        this, R.raw.map_style_json));
+
+
+        final Activity activity = this;
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if (marker.getSnippet() != null && (!marker.getSnippet().equals(""))){
+                    String type=marker.getTitle().substring(0,2);
+                  if (type.equals("CC")) {
+                        Log.d("contact",""+type);
+                        btn_contact_truck.setVisibility(View.GONE);
+                        btn_contact_collecting_center.setVisibility(View.VISIBLE);
+                      currentMarker = marker;
+//                        collectingCenter=false;
+                    }
+
+                    else if (type.equals("CT")){
+                        Log.d("contact",""+type);
+                        btn_contact_collecting_center.setVisibility(View.GONE);
+                        btn_contact_truck.setVisibility(View.VISIBLE);
+                      currentMarker = marker;
+//                        btn_contact_collecting_center.setText("Contact Collecting Center");
 //
-//            @Override
-//            public void onMapClick(LatLng arg0) {
-//                // TODO Auto-generated method stub
-//                wasteDisposalLocations = new WBWasteDisposalLocations("", 1, 1.0, 1.0, "");
-//                wasteDisposalLocations.save();
-//            }
-//        });
-//        startDemo();
+////                        collectingCenter=true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        View locationButton = ((View) mapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+// position on right bottom
+        //rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+        //  rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        //  rlp.setMargins(0,  0, 0, 0);;
     }
+
+
+
     private void getLocationPermission() {
     /*
      * Request location permission, so that we can get the location of the
@@ -445,6 +481,7 @@ public class WBMapActivity extends AppCompatActivity
                             // mMap.getUiSettings().setMyLocationButtonEnabled(false);
                         }
                         prevLocation = myLocation;
+                        markLocationsOnMap();
 //                        fetchParkingSlots(myLocation.latitude,myLocation.longitude);
                     }
                 });
@@ -508,7 +545,7 @@ public class WBMapActivity extends AppCompatActivity
 
     @Override
     public void onConnected(Bundle bundle) {
-        getCurrentLocation();
+//        getCurrentLocation();
     }
 
     @Override
@@ -550,14 +587,43 @@ public class WBMapActivity extends AppCompatActivity
         longitude = marker.getPosition().longitude;
 
         //Moving the map
-        moveMap();
+//        moveMap();
     }
 
     @Override
     public void onClick(View v) {
-        if (v == btn_currentloction) {
-            getCurrentLocation();
-            moveMap();
+        switch (v.getId()){
+            case R.id.btn_contact_collecting_center:
+                for (int i = 0; i < wasteDisposalLocationsArr.size(); i++) {
+                    if (wasteDisposalLocationsArr.get(i).type.equals("collectingCenter")){
+                        if (currentMarker.getTitle().contains(wasteDisposalLocationsArr.get(i).centerId)) {
+                            Intent intent1 = new Intent(this, WBContactCollectinCenter.class);
+                            intent1.putExtra("centerId", wasteDisposalLocationsArr.get(i).centerId);
+                            intent1.putExtra("name", wasteDisposalLocationsArr.get(i).name);
+                            intent1.putExtra("address", wasteDisposalLocationsArr.get(i).address);
+                            intent1.putExtra("contact", wasteDisposalLocationsArr.get(i).contact);
+                            intent1.putExtra("acceptedWaste", wasteDisposalLocationsArr.get(i).acceptedWaste);
+                            startActivity(intent1);
+                            return;
+                        }
+                    }
+                }
+            case R.id.btn_contact_truck:
+                for (int i = 0; i < wasteDisposalLocationsArr.size(); i++) {
+                 if (wasteDisposalLocationsArr.get(i).type.equals("garbageTruck")) {
+                     if (currentMarker.getTitle().contains(wasteDisposalLocationsArr.get(i).centerId)) {
+                         Intent intent = new Intent(this, WBContactTruck.class);
+                         intent.putExtra("centerId", wasteDisposalLocationsArr.get(i).centerId);
+                         intent.putExtra("name", wasteDisposalLocationsArr.get(i).name);
+                         intent.putExtra("address", wasteDisposalLocationsArr.get(i).address);
+                         intent.putExtra("contact", wasteDisposalLocationsArr.get(i).contact);
+                         intent.putExtra("acceptedWaste", wasteDisposalLocationsArr.get(i).acceptedWaste);
+                         startActivity(intent);
+                         return;
+                     }
+                 }
+            }
+
         }
     }
 
@@ -579,6 +645,19 @@ private void addMarkers(){
                 .position(location);
 //        MarkerOptions options=new MarkerOptions()
 //                .position(location);
+
+        if (wasteDisposalLocationsArr.get(i).type.equals("collectingCenter")){
+            Log.d("markLocations","type"+wasteDisposalLocationsArr.get(i).type);
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_collecting_center));
+            collectingCenter=true;
+            typeofCollector="collectingCenter";
+
+        }
+        else if (wasteDisposalLocationsArr.get(i).type.equals("garbageTruck")){
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.garbage_truck));
+            collectingCenter=false;
+            typeofCollector="garbageTruck";
+        }
         if (mMap!=null){
             mMap.addMarker(options);
         }

@@ -30,6 +30,7 @@
             android:textSize="20dp"
             android:textStyle="bold"/>
         <LinearLayout
+            android:id="@+id/layout_contact_one"
             android:layout_margin="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -47,13 +48,14 @@
                 android:layout_height="match_parent"
                 android:background="@color/clr_gray"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/phone"
                 android:layout_gravity="center"
                 android:layout_weight="1"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/layout_contact_two"
             android:layout_marginBottom="@dimen/wb_screen_margins"
             android:layout_marginLeft="@dimen/wb_screen_margins"
             android:layout_marginRight="@dimen/wb_screen_margins"
@@ -73,8 +75,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/clr_gray"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/phone"
                 android:layout_gravity="center"
                 android:layout_weight="1"/>
@@ -93,13 +95,22 @@
                 android:background="@drawable/btn_round_corner"
                 android:layout_marginRight="@dimen/wb_screen_margins"
                 android:orientation="vertical">
-                    <ImageView
-                        android:layout_marginLeft="@dimen/wb_screen_margins"
-                        android:layout_marginTop="@dimen/wb_screen_margins"
-                        android:id="@+id/img_exclamation_mark"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/exclamation_mark"/>
+                <ImageView
+                    android:id="@+id/img_organic_accpt"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/img_accept"
+                    android:visibility="visible"/>
+                <ImageView
+                    android:id="@+id/img_organic_reject"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/reject"
+                    android:visibility="gone"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,11 +138,21 @@
                 android:background="@drawable/btn_round_corner"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_marginLeft="@dimen/wb_screen_margins"
-                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:id="@+id/img_glass_accept"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/exclamation_mark"/>
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/img_accept"
+                    android:visibility="visible"/>
+                <ImageView
+                    android:id="@+id/img_glass_reject"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/reject"
+                    android:visibility="gone"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -159,7 +180,8 @@
             android:orientation="horizontal"
             android:layout_marginRight="@dimen/wb_screen_margins"
             android:layout_marginLeft="@dimen/wb_screen_margins"
-            android:layout_marginTop="@dimen/wb_screen_margins">
+            android:layout_marginTop="@dimen/wb_screen_margins"
+            android:layout_marginBottom="@dimen/wb_screen_margins">
             <com.wastebanking.Utility.WBSquareShape
                 android:layout_width="0dp"
                 android:layout_height="180dp"
@@ -168,11 +190,21 @@
                 android:layout_marginRight="@dimen/wb_screen_margins"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_marginLeft="@dimen/wb_screen_margins"
-                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:id="@+id/img_plastic_accept"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/exclamation_mark"/>
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/img_accept"
+                    android:visibility="visible"/>
+                <ImageView
+                    android:id="@+id/img_plastic_reject"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/reject"
+                    android:visibility="gone"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -199,11 +231,21 @@
                 android:background="@drawable/btn_round_corner"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_marginLeft="@dimen/wb_screen_margins"
-                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:id="@+id/img_e_waste_accept"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/exclamation_mark"/>
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/img_accept"
+                    android:visibility="visible"/>
+                <ImageView
+                    android:id="@+id/img_e_waste_reject"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/wb_screen_margins"
+                    android:layout_marginTop="@dimen/wb_screen_margins"
+                    android:src="@drawable/reject"
+                    android:visibility="gone"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
