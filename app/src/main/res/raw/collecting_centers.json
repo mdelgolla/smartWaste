@@ -8,7 +8,8 @@
       "address":"Neptune Papers (Pvt) Ltd, Peliyagoda",
       "lat":6.959118,
       "lang":79.888450,
-      "acceptedWaste":["plastic","polythene"]
+      "acceptedWaste":["plastic","polythene"],
+      "priceList":["10.00","10.00"]
     },
     {
       "id":"CC002",
@@ -18,7 +19,8 @@
       "address":"Ceylon Waste Management (Pvt) Ltd. - Factory, Godaparagahalanda Road, 10208",
       "lat":6.800372,
       "lang":80.014052,
-      "acceptedWaste":["e-waste"]
+      "acceptedWaste":["e-waste"],
+      "priceList":["20.00"]
     },
     {
       "id":"CC003",
@@ -28,7 +30,8 @@
       "lat":7.160189,
       "lang":80.056799,
       "address":"Veyangoda Town Waste Recycling Center, Economic Center Rd, Veyangoda 11100",
-      "acceptedWaste":["plastic","polythene","organic"]
+      "acceptedWaste":["plastic","polythene","organic"],
+      "priceList":["20.00","10.00","05.00"]
     },
     {
       "id":"CC004",
@@ -38,7 +41,8 @@
       "lat":7.008689,
       "lang":79.897541,
       "address":"Green Links Lanka,No: 848/3A, Negombo Road,Mabola, Wattala, Sri Lanka",
-      "acceptedWaste":["e-waste"]
+      "acceptedWaste":["e-waste"],
+      "priceList":["10.00"]
     },
     {
       "id":"CC005",
@@ -48,7 +52,8 @@
       "lat":6.959348,
       "lang":79.967535,
       "address":"221/3 Mabima, Heiyanthuduwa, Sri Lanka",
-      "acceptedWaste":["e-waste"]
+      "acceptedWaste":["e-waste"],
+      "priceList":["10.00"]
     },
     {
       "id":"CC006",
@@ -58,7 +63,8 @@
       "lat":7.087875,
       "lang":79.904315,
       "address":"Waste Plastic Collection Center, Ja-Ela",
-      "acceptedWaste":["plastic"]
+      "acceptedWaste":["plastic"],
+      "priceList":["20.00"]
     },
     {
       "id":"CT001",
@@ -68,7 +74,8 @@
       "lat":6.921346,
       "lang":79.853069,
       "address":"Colombo Municipalities Cleaning Center",
-      "acceptedWaste":["plastic","polythene"]
+      "acceptedWaste":["plastic","polythene"],
+      "priceList":[]
     },
     {
       "id":"CT002",
@@ -78,7 +85,8 @@
       "lat":6.922038,
       "lang":79.854496,
       "address":"Colombo Municipalities Cleaning Center",
-      "acceptedWaste":["organic"]
+      "acceptedWaste":["organic"],
+      "priceList":[]
     }
 
   ]

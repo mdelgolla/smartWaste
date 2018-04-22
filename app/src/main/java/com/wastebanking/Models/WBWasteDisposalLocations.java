@@ -17,11 +17,12 @@ public class WBWasteDisposalLocations extends SugarRecord {
     public String address;
     public String contact;
     public ArrayList<String>acceptedWaste;
+    public ArrayList<String>priceList;
 
 
     public WBWasteDisposalLocations(){}
 
-    public WBWasteDisposalLocations(String type,String centerId,Double lat,Double longitude,String name,String address,String contact,ArrayList<String>acceptedWaste){
+    public WBWasteDisposalLocations(String type,String centerId,Double lat,Double longitude,String name,String address,String contact,ArrayList<String>acceptedWaste,ArrayList<String>priceList){
         this.type=type;
         this.centerId=centerId;
         this.lat=lat;
@@ -30,6 +31,7 @@ public class WBWasteDisposalLocations extends SugarRecord {
         this.address=address;
         this.contact=contact;
         this.acceptedWaste=acceptedWaste;
+        this.priceList=priceList;
 
     }
     public String getType(){return type;}
@@ -43,6 +45,7 @@ public class WBWasteDisposalLocations extends SugarRecord {
     public ArrayList<String> getAcceptedWaste() {
         return acceptedWaste;
     }
+    public ArrayList<String>getPriceList(){return priceList;}
 
     public void setType(String type){this.type=type;}
     public void setCenterId(String centerId){this.centerId=centerId;}
@@ -52,4 +55,5 @@ public class WBWasteDisposalLocations extends SugarRecord {
     public void setAddress(String address){this.address=address;}
     public void setContact(String contact){this.contact=contact;}
     public void setAcceptedWaste(ArrayList<String> acceptedWaste){this.acceptedWaste=acceptedWaste;}
+    public void setPriceList(ArrayList<String>priceList){this.priceList=priceList;}
 }

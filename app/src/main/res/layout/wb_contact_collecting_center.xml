@@ -45,6 +45,7 @@
                     android:maxLines="4" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/layout_contact"
                 android:layout_marginBottom="@dimen/wb_screen_margins"
                 android:layout_marginLeft="@dimen/wb_screen_margins"
                 android:layout_marginRight="@dimen/wb_screen_margins"

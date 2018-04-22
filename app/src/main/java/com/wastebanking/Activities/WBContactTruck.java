@@ -21,27 +21,29 @@ import java.util.ArrayList;
  */
 
 public class WBContactTruck extends AppCompatActivity implements View.OnClickListener {
-    private TextView tv_truckId,tv_contact_num,tv_contact;
-    private String centerId,name,address,contact;
-    private ArrayList<String>acceptedWaste;
+    private TextView tv_truckId, tv_contact_num, tv_contact;
+    private String centerId, name, address, contact;
+    private ArrayList<String> acceptedWaste;
     private Toolbar my_toolbar;
     private ImageView img_organic_accpt, img_organic_reject, img_glass_accept, img_glass_reject, img_plastic_accept, img_plastic_reject, img_e_waste_accept, img_e_waste_reject;
-    private LinearLayout layout_contact_one,layout_contact_two;
+    private LinearLayout layout_contact_one, layout_contact_two;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wb_contact_truck);
         initViews();
     }
-    public void initViews(){
+
+    public void initViews() {
         Intent intent = getIntent();
-        centerId=intent.getStringExtra("centerId");
-        name=intent.getStringExtra("name");
-        address=intent.getStringExtra("address");
-        contact=intent.getStringExtra("contact");
+        centerId = intent.getStringExtra("centerId");
+        name = intent.getStringExtra("name");
+        address = intent.getStringExtra("address");
+        contact = intent.getStringExtra("contact");
         acceptedWaste = new ArrayList<String>();
         acceptedWaste = intent.getStringArrayListExtra("acceptedWaste");
-        Log.d("truckInfo",""+centerId+" "+name+" "+acceptedWaste.toString());
+        Log.d("truckInfo", "" + centerId + " " + name + " " + acceptedWaste.toString());
 
         my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(my_toolbar);
@@ -53,11 +55,11 @@ public class WBContactTruck extends AppCompatActivity implements View.OnClickLis
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        tv_truckId=(TextView)findViewById(R.id.tv_truckId);
+        tv_truckId = (TextView) findViewById(R.id.tv_truckId);
         tv_truckId.setText(centerId);
-        tv_contact_num=(TextView)findViewById(R.id.tv_contact_num);
+        tv_contact_num = (TextView) findViewById(R.id.tv_contact_num);
         tv_contact_num.setText(contact);
-        tv_contact=(TextView)findViewById(R.id.tv_contact);
+        tv_contact = (TextView) findViewById(R.id.tv_contact);
         tv_contact.setText(contact);
         img_organic_accpt = (ImageView) findViewById(R.id.img_organic_accpt);
         img_organic_reject = (ImageView) findViewById(R.id.img_organic_reject);
@@ -67,9 +69,9 @@ public class WBContactTruck extends AppCompatActivity implements View.OnClickLis
         img_e_waste_reject = (ImageView) findViewById(R.id.img_e_waste_reject);
         img_plastic_accept = (ImageView) findViewById(R.id.img_plastic_accept);
         img_plastic_reject = (ImageView) findViewById(R.id.img_plastic_reject);
-        layout_contact_one=(LinearLayout)findViewById(R.id.layout_contact_one) ;
+        layout_contact_one = (LinearLayout) findViewById(R.id.layout_contact_one);
         layout_contact_one.setOnClickListener(this);
-        layout_contact_two=(LinearLayout)findViewById(R.id.layout_contact_two);
+        layout_contact_two = (LinearLayout) findViewById(R.id.layout_contact_two);
         layout_contact_two.setOnClickListener(this);
 
         distinguishAcceptedWaste(acceptedWaste);
@@ -101,23 +103,27 @@ public class WBContactTruck extends AppCompatActivity implements View.OnClickLis
         }
         if (acceptedWasteCategories.contains("glass")) {
             img_glass_accept.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             img_glass_accept.setVisibility(View.GONE);
             img_glass_reject.setVisibility(View.VISIBLE);
         }
     }
 
-    public void onClick(View v){
-        switch (v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.layout_contact_one:
-                Intent intent=new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" +tv_contact_num.getText().toString()));
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + tv_contact_num.getText().toString()));
                 startActivity(intent);
+                break;
 
             case R.id.layout_contact_two:
-                Intent intent1=new Intent(Intent.ACTION_DIAL);
-                intent1.setData(Uri.parse("tel:" +tv_contact.getText().toString()));
+                Intent intent1 = new Intent(Intent.ACTION_DIAL);
+                intent1.setData(Uri.parse("tel:" + tv_contact.getText().toString()));
                 startActivity(intent1);
+                break;
+            default:
+                break;
         }
     }
 

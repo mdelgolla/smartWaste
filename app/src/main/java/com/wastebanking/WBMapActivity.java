@@ -52,6 +52,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.wastebanking.Activities.WBContactCollectinCenter;
 import com.wastebanking.Activities.WBContactTruck;
+import com.wastebanking.Activities.WBTrashCalculator;
 import com.wastebanking.Helpers.NavigationHelper;
 import com.wastebanking.Models.WBWasteDisposalLocations;
 
@@ -218,7 +219,9 @@ public void initViews(){
                     wastedisposeLocations.setContact(jo_inside.getString("contact"));
                     wastedisposeLocations.setType(jo_inside.getString("type"));
                     JSONArray jwasteTypes=jo_inside.getJSONArray("acceptedWaste");
+                    JSONArray jpriceList=jo_inside.optJSONArray("priceList");
                     ArrayList<String> stringArray = new ArrayList<String>();
+                    ArrayList<String>stringPriceList=new ArrayList<String>();
                     for (int j=0; j<jwasteTypes.length();j++){
 
                         try {
@@ -230,6 +233,19 @@ public void initViews(){
                         catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("disposelocations","1 "+e);
+                        }
+                    }
+                    for (int k=0; k<jpriceList.length();k++){
+
+                        try {
+                            String priceList = jpriceList.getString(k);
+                            stringPriceList.add(priceList);
+                            wastedisposeLocations.setPriceList(stringPriceList);
+                            Log.d("priceList","1 "+stringPriceList.toString());
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("priceList","1 "+e);
                         }
                     }
 
@@ -603,6 +619,7 @@ public void initViews(){
                             intent1.putExtra("address", wasteDisposalLocationsArr.get(i).address);
                             intent1.putExtra("contact", wasteDisposalLocationsArr.get(i).contact);
                             intent1.putExtra("acceptedWaste", wasteDisposalLocationsArr.get(i).acceptedWaste);
+                            intent1.putExtra("priceList",wasteDisposalLocationsArr.get(i).priceList);
                             startActivity(intent1);
                             return;
                         }
@@ -648,7 +665,7 @@ private void addMarkers(){
 
         if (wasteDisposalLocationsArr.get(i).type.equals("collectingCenter")){
             Log.d("markLocations","type"+wasteDisposalLocationsArr.get(i).type);
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_collecting_center));
+            options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_location));
             collectingCenter=true;
             typeofCollector="collectingCenter";
 
@@ -693,7 +710,8 @@ private void addMarkers(){
         int id = item.getItemId();
 
         if (id == R.id.nav_calculator) {
-            // Handle the camera action
+            Intent intent=new Intent(this, WBTrashCalculator.class);
+            startActivity(intent);
         } else if (id == R.id.nav_history) {
 
         } else if (id == R.id.nav_points) {

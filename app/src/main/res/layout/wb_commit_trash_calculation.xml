@@ -25,32 +25,46 @@
             android:layout_gravity="center"
             android:src="@drawable/calculator" />
         <RelativeLayout
+            android:id="@+id/rl_organic"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/cb_organic_waste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Organic Waste"
                 style="@style/menu_text_style"
-                android:layout_marginLeft="@dimen/wb_screen_margins"/>
+                android:layout_marginLeft="@dimen/wb_screen_margins"
+                />
             <EditText
-                android:layout_alignParentRight="true"
-                android:layout_width="100dp"
+                android:id="@+id/et_orgnic_amount"
+                android:layout_toLeftOf="@+id/tv_kg_organic"
+                android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:background="@drawable/bg_edit_text"
-                android:hint="50 Kg"
+                android:hint="50"
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
+            <TextView
+                android:id="@+id/tv_kg_organic"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kg"
+                android:layout_marginRight="@dimen/wb_screen_margins"
+                style="@style/menu_text_style"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_glass"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/cb_glass_waste"
                 android:layout_width="wrap_content"
@@ -59,19 +73,30 @@
                 style="@style/menu_text_style"
                 android:layout_marginLeft="@dimen/wb_screen_margins"/>
             <EditText
-                android:layout_alignParentRight="true"
-                android:layout_width="100dp"
+                android:id="@+id/et_glass_amount"
+                android:layout_toLeftOf="@+id/tv_kg_glass"
+                android:layout_width="80dp"
                 android:layout_height="30dp"
-                android:hint="6 kg"
+                android:hint="6"
                 android:background="@drawable/bg_edit_text"
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
+            <TextView
+                android:id="@+id/tv_kg_glass"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kg"
+                android:layout_marginRight="@dimen/wb_screen_margins"
+                style="@style/menu_text_style"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_plastic"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/cb_plastic_waste"
                 android:layout_width="wrap_content"
@@ -80,19 +105,30 @@
                 style="@style/menu_text_style"
                 android:layout_marginLeft="@dimen/wb_screen_margins"/>
             <EditText
-                android:layout_alignParentRight="true"
-                android:layout_width="100dp"
+                android:id="@+id/et_plastic_amount"
+                android:layout_toLeftOf="@+id/tv_kg_plastic"
+                android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:hint="10 Kg"
                 android:background="@drawable/bg_edit_text"
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
+            <TextView
+                android:id="@+id/tv_kg_plastic"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kg"
+                android:layout_marginRight="@dimen/wb_screen_margins"
+                style="@style/menu_text_style"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_eWaste"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <TextView
                 android:layout_marginLeft="@dimen/wb_screen_margins"
                 android:id="@+id/cb_e_waste"
@@ -101,15 +137,26 @@
                 android:text="E-Waste"
                 style="@style/menu_text_style"/>
             <EditText
-                android:layout_alignParentRight="true"
-                android:layout_width="100dp"
+                android:id="@+id/et_ewaste_amount"
+                android:layout_toLeftOf="@+id/tv_kg_ewaste"
+                android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:hint="6 kg"
                 android:background="@drawable/bg_edit_text"
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
+            <TextView
+                android:id="@+id/tv_kg_ewaste"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kg"
+                android:layout_marginRight="@dimen/wb_screen_margins"
+                style="@style/menu_text_style"/>
+
         </RelativeLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/btn_calculate"
         android:layout_margin="@dimen/wb_screen_margins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

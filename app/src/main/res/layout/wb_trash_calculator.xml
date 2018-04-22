@@ -25,11 +25,13 @@
             android:layout_gravity="center"
             android:src="@drawable/calculator" />
         <RelativeLayout
+            android:id="@+id/rl_orgnaic_waste"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <CheckBox
                 android:id="@+id/cb_organic_waste"
                 android:layout_width="wrap_content"
@@ -46,11 +48,13 @@
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_glass_waste"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <CheckBox
                 android:id="@+id/cb_glass_waste"
                 android:layout_width="wrap_content"
@@ -67,11 +71,13 @@
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_plastic_waste"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <CheckBox
                 android:id="@+id/cb_plastic_waste"
                 android:layout_width="wrap_content"
@@ -88,11 +94,13 @@
                 android:layout_marginRight="@dimen/wb_screen_margins"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_e_waste"
             android:layout_marginTop="@dimen/wb_screen_margins"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_bg_color"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
             <CheckBox
                 android:id="@+id/cb_e_waste"
                 android:layout_width="wrap_content"
